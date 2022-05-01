@@ -14,8 +14,8 @@ app.use(cors());
 app.use("/cliente", clienteRouter);
 app.use("/autor", autorRouter);
 
-app.use("/livro", clienteRouter);
-app.use("/venda", autorRouter);
+app.use("/livro", livroRouter);
+app.use("/venda", vendaRouter);
 
 app.use((err, req, res, next) => {
   res.status(400).send({ error: err.message });
