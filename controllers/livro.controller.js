@@ -14,7 +14,7 @@ async function createLivro(req, res, next) {
 
 async function getLivros(req, res, next) {
   try {
-    res.send(await LivroService.getLivros());
+    res.send(await LivroService.getLivros(req.query.autorId));
   } catch (error) {
     next(error);
   }

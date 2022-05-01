@@ -1,5 +1,7 @@
 import Livro from "../models/livro.model.js";
 
+import Autor from "../models/autor.model.js";
+
 async function insertLivro(livro) {
   try {
     return await Livro.create(livro);
@@ -20,6 +22,21 @@ async function getLivros() {
 async function getLivro(id) {
   try {
     return await Livro.findByPk(id);
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getLivrosPeloAutor(autorId) {
+  try {
+    return Livro.findAll({
+      include: [
+        {
+          model: Autor,
+          where: { autorId },
+        },
+      ],
+    });
   } catch (error) {
     throw error;
   }
@@ -55,5 +72,6 @@ export default {
   getLivros,
   getLivro,
   updateLivro,
+  getLivrosPeloAutor,
   deleteLivro,
 };
