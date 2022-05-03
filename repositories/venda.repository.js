@@ -6,7 +6,6 @@ async function insertVenda(venda) {
   } catch (error) {
     throw error;
   }
-  cls;
 }
 
 async function getVendas() {
