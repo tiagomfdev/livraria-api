@@ -10,7 +10,6 @@ async function insertLivro(livro) {
   } catch (error) {
     throw error;
   }
-  cls;
 }
 
 async function getLivros() {

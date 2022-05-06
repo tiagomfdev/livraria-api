@@ -1,3 +1,5 @@
+import Cliente from "../models/cliente.model.js";
+import Livro from "../models/livro.model.js";
 import Venda from "../models/venda.model.js";
 
 async function insertVenda(venda) {
@@ -19,6 +21,37 @@ async function getVendas() {
 async function getVenda(id) {
   try {
     return await Venda.findByPk(id);
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getVendasByCliente(clienteId) {
+  try {
+    return Venda.findAll({
+      include: [
+        {
+          model: Cliente,
+          as: "cliente",
+          where: { clienteId },
+        },
+      ],
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getVendasByLivro(livroId) {
+  try {
+    return Venda.findAll({
+      include: [
+        {
+          model: Livro,
+          where: { livroId },
+        },
+      ],
+    });
   } catch (error) {
     throw error;
   }
@@ -55,4 +88,6 @@ export default {
   getVenda,
   updateVenda,
   deleteVenda,
+  getVendasByCliente,
+  getVendasByLivro,
 };
